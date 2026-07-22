@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Allow server-side packages needed for Prisma Postgres
-  serverExternalPackages: ["@prisma/client", "prisma"],
+  serverExternalPackages: ["@prisma/client", "prisma", "pg"],
   // Allow images from Uploadthing CDN
   images: {
     remotePatterns: [
