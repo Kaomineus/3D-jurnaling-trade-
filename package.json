@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
@@ -19,7 +20,7 @@
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.8",
     "lucide-react": "^1.25.0",
-    "next": "^15.3.1",
+    "next": "^15.3.6",
     "next-auth": "^4.24.15",
     "prisma": "^7.9.0",
     "react": "19.2.4",
