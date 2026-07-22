@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+  output  = "../src/generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  trades    Trade[]
+}
+
+model Trade {
+  id         String       @id @default(cuid())
+  userId     String
+  symbol     String
+  type       String       // LONG or SHORT
+  entryDate  DateTime
+  exitDate   DateTime?
+  entryPrice Float
+  exitPrice  Float?
+  size       Float
+  sl         Float?
+  tp         Float?
+  notes      String?
+  mood       String?      // neutral, happy, sad
+  tags       String       // JSON array stored as string
+  commission Float?       @default(0)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  images     TradeImage[]
+}
+
+model TradeImage {
+  id           String   @id @default(cuid())
+  tradeId      String
+  url          String
+  thumbnailUrl String?
+  createdAt    DateTime @default(now())
+
+  trade        Trade    @relation(fields: [tradeId], references: [id], onDelete: Cascade)
+}
